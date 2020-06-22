@@ -67,11 +67,11 @@
         },
         computed :{
             ...mapState ({
-                all : state => state.car.all
+                list : state => state.cars.list
             })
         },
         // mounted() {
-        //     this.$store.dispatch('car/list')
+        //     this.$store.dispatch('cars/all')
         // },
         created() {
             this.$store.dispatch('cars/all')

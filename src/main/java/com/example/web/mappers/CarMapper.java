@@ -14,7 +14,7 @@ public interface CarMapper {
     public void updateCar(CarDTO carDTO);
     public void deleteCar(CarDTO carDTO);
     public List<CarDTO> selectCars(Pager pager);
-    public CarDTO selectCar(String userNo);
+    public CarDTO selectCar(String carNo);
     public int count();
 
 }

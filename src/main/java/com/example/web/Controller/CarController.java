@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
-    @RestController
+@RestController
 @RequestMapping("/car")
     public class CarController {
         @Autowired

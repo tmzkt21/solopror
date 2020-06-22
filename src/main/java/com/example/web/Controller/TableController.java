@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController
+@RequestMapping("/cass")
 public class TableController {
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @RestController
-    @RequestMapping("/cass")
-    public class CarController {
         @Autowired CarRepository carRepository;
         @Autowired Crawler crawler;
         @GetMapping("/list")
@@ -25,5 +23,5 @@ public class TableController {
             crawler.carlist();
             return carRepository.findAll();
         }
-    }
+
 }
