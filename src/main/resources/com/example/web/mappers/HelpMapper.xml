@@ -1,0 +1,44 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.web.mappers.HelpMapper">
+    <insert id="insertHelp"
+            parameterType="com.example.web.DTO.HelpDTO">
+        insert rank, user, tear,point,level,wins into help
+        values (#{rank},#{user},#{tear},#{point},#{level},#{wins})
+    </insert>
+
+    <update id="updateHelp"
+            parameterType="com.example.web.DTO.HelpDTO">
+        update set user = #{user} from help
+        where user_No like #{userNo}
+    </update>
+
+    <delete id="deleteHelp"
+            parameterType="com.example.web.DTO.HelpDTO">
+        delete from help where userNo like #{userNo}
+    </delete>
+
+    <select id="selectHelps" resultType="com.example.web.DTO.HelpDTO"
+            parameterType="com.example.web.proxy.Pager">
+        select user_No userNo, rank, user, tear, point, level, wins
+        from help
+        <if test="searchWord != null">
+            where user like '%${searchWord}%'
+        </if>
+
+        limit #{rowStart}, #{pageSize}
+
+    </select>
+
+    <select id="selectHelp" resultType="com.example.web.DTO.HelpDTO"
+            parameterType="string">
+      select user_No userNo, rank, user, tear,point,level,wins
+      from help
+      where user_No = #{value}
+    </select>
+    <select id="count" resultType="int">
+      select count(*)
+      from help
+    </select>
+</mapper>

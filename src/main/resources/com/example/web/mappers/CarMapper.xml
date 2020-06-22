@@ -1,0 +1,44 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.web.mappers.CarMapper">
+    <insert id="insertCar"
+            parameterType="com.example.web.DTO.CarDTO">
+        insert img,name,year,fuel,km,price,span  into car
+        values (#{img},#{name},#{year},#{fuel},#{km},#{price},#{span})
+    </insert>
+
+    <update id="updateCar"
+            parameterType="com.example.web.DTO.CarDTO">
+        update set name = #{name} from car
+        where car_No like #{carNo}
+    </update>
+
+    <delete id="deleteCar"
+            parameterType="com.example.web.DTO.CarDTO">
+        delete from car where carNo like #{carNo}
+    </delete>
+
+    <select id="selectCars" resultType="com.example.web.DTO.CarDTO"
+            parameterType="com.example.web.proxy.Pager">
+        select car_No carNo,img,name,year,fuel,km,price,span
+        from car
+        <if test="searchWord != null">
+            where name like '%${searchWord}%'
+        </if>
+
+        limit #{rowStart}, #{pageSize}
+
+    </select>
+
+    <select id="selectCar" resultType="com.example.web.DTO.CarDTO"
+            parameterType="string">
+      select car_No carNo,img,name,year,fuel,km,price,span
+        from car
+      where car_No = #{value}
+    </select>
+    <select id="count" resultType="int">
+      select count(*)
+      from car
+    </select>
+</mapper>
